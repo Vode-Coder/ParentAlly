@@ -122,7 +122,7 @@ const ProblemSection = () => {
     <section id="problems" className="py-20 md:py-28 bg-card">
       <div className="container mx-auto">
         <div className="text-center mb-16">
-          <span className="inline-block bg-peach-light text-accent-foreground text-sm font-medium px-4 py-1.5 rounded-full mb-4">
+          <span className="section-pill mb-4">
             The Problem
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">

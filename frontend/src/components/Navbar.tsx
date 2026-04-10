@@ -12,10 +12,10 @@ const Navbar = () => {
         </a>
 
         <div className="hidden md:flex items-center gap-8">
-          <a href="#features" className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium">Features</a>
-          <a href="#problems" className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium">Problems We Solve</a>
-          <a href="#how-it-works" className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium">How It Works</a>
-          <a href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium">Pricing</a>
+          <a href="#features" className="nav-link-premium text-sm font-medium">Features</a>
+          <a href="#problems" className="nav-link-premium text-sm font-medium">Problems We Solve</a>
+          <a href="#how-it-works" className="nav-link-premium text-sm font-medium">How It Works</a>
+          <a href="#pricing" className="nav-link-premium text-sm font-medium">Pricing</a>
           <button className="gradient-sky text-primary-foreground px-5 py-2.5 rounded-lg font-medium text-sm hover:opacity-90 transition-opacity">
             Get Early Access
           </button>
@@ -28,10 +28,10 @@ const Navbar = () => {
 
       {open && (
         <div className="md:hidden bg-card border-t border-border px-6 py-4 flex flex-col gap-4">
-          <a href="#features" className="text-muted-foreground text-sm font-medium" onClick={() => setOpen(false)}>Features</a>
-          <a href="#problems" className="text-muted-foreground text-sm font-medium" onClick={() => setOpen(false)}>Problems We Solve</a>
-          <a href="#how-it-works" className="text-muted-foreground text-sm font-medium" onClick={() => setOpen(false)}>How It Works</a>
-          <a href="#pricing" className="text-muted-foreground text-sm font-medium" onClick={() => setOpen(false)}>Pricing</a>
+          <a href="#features" className="nav-link-premium text-sm font-medium w-fit" onClick={() => setOpen(false)}>Features</a>
+          <a href="#problems" className="nav-link-premium text-sm font-medium w-fit" onClick={() => setOpen(false)}>Problems We Solve</a>
+          <a href="#how-it-works" className="nav-link-premium text-sm font-medium w-fit" onClick={() => setOpen(false)}>How It Works</a>
+          <a href="#pricing" className="nav-link-premium text-sm font-medium w-fit" onClick={() => setOpen(false)}>Pricing</a>
           <button className="gradient-sky text-primary-foreground px-5 py-2.5 rounded-lg font-medium text-sm">
             Get Early Access
           </button>

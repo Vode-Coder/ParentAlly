@@ -1,4 +1,5 @@
 import { Sparkles, MessageCircle, ShieldCheck } from "lucide-react";
+import type { MouseEvent } from "react";
 
 const features = [
   {
@@ -24,11 +25,26 @@ const features = [
   },
 ];
 
+const handleCardPointerMove = (event: MouseEvent<HTMLDivElement>) => {
+  const card = event.currentTarget;
+  const rect = card.getBoundingClientRect();
+  const x = ((event.clientX - rect.left) / rect.width) * 100;
+  const y = ((event.clientY - rect.top) / rect.height) * 100;
+  card.style.setProperty("--mx", `${x}%`);
+  card.style.setProperty("--my", `${y}%`);
+};
+
+const handleCardPointerLeave = (event: MouseEvent<HTMLDivElement>) => {
+  const card = event.currentTarget;
+  card.style.setProperty("--mx", "50%");
+  card.style.setProperty("--my", "50%");
+};
+
 const FeaturesSection = () => (
   <section id="features" className="py-20 md:py-28 bg-background">
     <div className="container mx-auto">
       <div className="text-center mb-16">
-        <span className="inline-block bg-sky-light text-primary text-sm font-medium px-4 py-1.5 rounded-full mb-4">
+        <span className="section-pill mb-4">
           Core Features
         </span>
         <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -43,7 +59,9 @@ const FeaturesSection = () => (
         {features.map((f) => (
           <div
             key={f.title}
-            className="bg-card rounded-2xl p-8 border border-border hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 flex flex-col"
+            onMouseMove={handleCardPointerMove}
+            onMouseLeave={handleCardPointerLeave}
+            className="glow-card bg-card rounded-2xl p-8 border border-border transition-all duration-300 flex flex-col"
           >
             <div className={`w-14 h-14 ${f.bg} rounded-2xl flex items-center justify-center mb-5`}>
               <f.icon size={26} className="text-primary-foreground" />

@@ -20,7 +20,7 @@ const HowItWorks = () => (
   <section id="how-it-works" className="py-20 md:py-28 bg-card">
     <div className="container mx-auto">
       <div className="text-center mb-16">
-        <span className="inline-block bg-sky-light text-primary text-sm font-medium px-4 py-1.5 rounded-full mb-4">
+        <span className="section-pill mb-4">
           How It Works
         </span>
         <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">

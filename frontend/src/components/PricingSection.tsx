@@ -1,4 +1,5 @@
 import { Check } from "lucide-react";
+import type { MouseEvent } from "react";
 
 const plans = [
   {
@@ -11,7 +12,7 @@ const plans = [
   },
   {
     name: "Pro",
-    price: "₹***",
+    price: "₹799",
     period: "/month",
     desc: "Everything a parent needs daily",
     features: ["Unlimited questions", "All 6 problem areas", "Voice input", "Offline access", "Evidence sources shown", "Priority response speed"],
@@ -19,7 +20,7 @@ const plans = [
   },
   {
     name: "Family",
-    price: "₹***",
+    price: "₹399",
     period: "/month",
     desc: "For the whole household",
     features: ["Everything in Pro", "Up to 4 family members", "Child profiles by age", "Financial planning tools", "Expert consultation credits"],
@@ -27,11 +28,26 @@ const plans = [
   },
 ];
 
+const handleCardPointerMove = (event: MouseEvent<HTMLDivElement>) => {
+  const card = event.currentTarget;
+  const rect = card.getBoundingClientRect();
+  const x = ((event.clientX - rect.left) / rect.width) * 100;
+  const y = ((event.clientY - rect.top) / rect.height) * 100;
+  card.style.setProperty("--mx", `${x}%`);
+  card.style.setProperty("--my", `${y}%`);
+};
+
+const handleCardPointerLeave = (event: MouseEvent<HTMLDivElement>) => {
+  const card = event.currentTarget;
+  card.style.setProperty("--mx", "50%");
+  card.style.setProperty("--my", "50%");
+};
+
 const PricingSection = () => (
   <section id="pricing" className="py-20 md:py-28 bg-background">
     <div className="container mx-auto">
       <div className="text-center mb-16">
-        <span className="inline-block bg-peach-light text-accent-foreground text-sm font-medium px-4 py-1.5 rounded-full mb-4">
+        <span className="section-pill mb-4">
           Pricing
         </span>
         <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -46,40 +62,46 @@ const PricingSection = () => (
         {plans.map((p) => (
           <div
             key={p.name}
-            className={`rounded-2xl p-8 border flex flex-col ${
-              p.highlight
-                ? "border-primary bg-card shadow-xl shadow-primary/10 scale-105"
-                : "border-border bg-card"
-            }`}
+            onMouseMove={handleCardPointerMove}
+            onMouseLeave={handleCardPointerLeave}
+            className={`glow-card relative group ${p.highlight ? "scale-105 featured-card" : ""}`}
           >
-            {p.highlight && (
-              <span className="inline-block gradient-sky text-primary-foreground text-xs font-bold px-3 py-1 rounded-full mb-4 self-start">
-                Most Popular
-              </span>
-            )}
-            <h3 className="text-xl font-bold text-foreground">{p.name}</h3>
-            <div className="mt-2 mb-1">
-              <span className="text-3xl font-bold text-foreground">{p.price}</span>
-              <span className="text-muted-foreground text-sm"> {p.period}</span>
-            </div>
-            <p className="text-muted-foreground text-sm mb-6">{p.desc}</p>
-            <ul className="space-y-3 flex-1 mb-8">
-              {p.features.map((f) => (
-                <li key={f} className="flex items-start gap-2 text-sm text-foreground">
-                  <Check size={16} className="text-primary mt-0.5 flex-shrink-0" />
-                  {f}
-                </li>
-              ))}
-            </ul>
-            <button
-              className={`w-full py-3 rounded-xl font-semibold text-sm transition-opacity ${
+            <div
+              className={`relative z-10 rounded-2xl p-8 border flex flex-col h-full ${
                 p.highlight
-                  ? "gradient-sky text-primary-foreground hover:opacity-90"
-                  : "bg-muted text-foreground hover:bg-border"
+                  ? "border-primary bg-card shadow-xl shadow-primary/10"
+                  : "border-border bg-card"
               }`}
             >
-              {p.highlight ? "Get Started" : "Choose Plan"}
-            </button>
+              {p.highlight && (
+                <span className="inline-block gradient-sky text-primary-foreground text-xs font-bold px-3 py-1 rounded-full mb-4 self-start">
+                  Most Popular
+                </span>
+              )}
+              <h3 className="text-xl font-bold text-foreground">{p.name}</h3>
+              <div className="mt-2 mb-1">
+                <span className="text-3xl font-bold text-foreground">{p.price}</span>
+                <span className="text-muted-foreground text-sm"> {p.period}</span>
+              </div>
+              <p className="text-muted-foreground text-sm mb-6">{p.desc}</p>
+              <ul className="space-y-3 flex-1 mb-8">
+                {p.features.map((f) => (
+                  <li key={f} className="flex items-start gap-2 text-sm text-foreground">
+                    <Check size={16} className="text-primary mt-0.5 flex-shrink-0" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <button
+                className={`w-full py-3 rounded-xl font-semibold text-sm transition-opacity ${
+                  p.highlight
+                    ? "gradient-sky text-primary-foreground hover:opacity-90"
+                    : "bg-muted text-foreground hover:bg-border"
+                }`}
+              >
+                {p.highlight ? "Get Started" : "Choose Plan"}
+              </button>
+            </div>
           </div>
         ))}
       </div>
