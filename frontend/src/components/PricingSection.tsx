@@ -11,7 +11,7 @@ const plans = [
   },
   {
     name: "Pro",
-    price: "₹199",
+    price: "₹***",
     period: "/month",
     desc: "Everything a parent needs daily",
     features: ["Unlimited questions", "All 6 problem areas", "Voice input", "Offline access", "Evidence sources shown", "Priority response speed"],
@@ -19,7 +19,7 @@ const plans = [
   },
   {
     name: "Family",
-    price: "₹349",
+    price: "₹***",
     period: "/month",
     desc: "For the whole household",
     features: ["Everything in Pro", "Up to 4 family members", "Child profiles by age", "Financial planning tools", "Expert consultation credits"],
